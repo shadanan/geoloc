@@ -1,0 +1,22 @@
+# Eclipse project files that we don't want to include
+.project
+.classpath
+.settings
+.checkstyle
+.pydevproject
+
+# IntelliJ IDEA project files that we don't want to include
+.idea/libraries/*.xml
+.idea/workspace.xml
+.idea
+*.iml
+
+# Build artifacts get put in these folder. Never include build artifacts
+target
+out
+
+# OSX file system info files should be ignored
+*.DS_Store
+
+# logs
+logs

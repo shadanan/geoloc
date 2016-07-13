@@ -1,0 +1,9 @@
+database:
+  driverClass: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/geoloc
+  user: geoloc
+  password: geoloc
+
+  properties:
+    hibernate.current_session_context_class: thread
+    hibernate.hbm2ddl.auto: create
