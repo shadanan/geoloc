@@ -2,6 +2,7 @@ package io.elide.geoloc.models;
 
 import com.yahoo.elide.annotation.ComputedAttribute;
 import com.yahoo.elide.annotation.Exclude;
+import com.yahoo.elide.annotation.Include;
 import com.yahoo.elide.annotation.UpdatePermission;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
+@Include
 public class Location {
 
     private long id;

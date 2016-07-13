@@ -1,20 +1,30 @@
 package io.elide.geoloc.models;
 
+import com.yahoo.elide.annotation.ComputedAttribute;
 import com.yahoo.elide.annotation.Include;
 import com.yahoo.elide.annotation.ReadPermission;
 import com.yahoo.elide.annotation.SharePermission;
 import com.yahoo.elide.annotation.UpdatePermission;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 @Include(rootLevel = true)
@@ -81,6 +91,21 @@ public class User implements Principal {
 
     public void setLocations(Collection<Location> locations) {
         this.locations = locations;
+    }
+
+    @Transient
+    @ComputedAttribute
+    public Map<String, Double> getLocation() {
+        LinkedHashMap<String, Double> result = new LinkedHashMap<>();
+
+        Optional<Location> location = locations.stream()
+            .max((o1, o2) -> o1.getLastUpdated().compareTo(o2.getLastUpdated()));
+        if (location.isPresent()) {
+            result.put("latitude", location.get().getLatitude());
+            result.put("longitude", location.get().getLongitude());
+        }
+
+        return result;
     }
 
     @Override
