@@ -33,14 +33,18 @@ public class AuthFilter implements ContainerRequestFilter {
 
         log.info("User: {}, Password: {}", userId, userPassword);
 
-        try (Session session = bundle.getSessionFactory().openSession()) {
-            User user = session.get(User.class, Long.parseLong(userId));
-            if (userPassword.equals(user.getPassword())) {
-                requestContext.setSecurityContext(new GeolocSecurityContext(user));
-                log.info("User: {}", String.valueOf(user));
+        if(null != userPassword && null != userId) {
+            try (Session session = bundle.getSessionFactory().openSession()) {
+                User user = session.get(User.class, Long.parseLong(userId));
+                if (userPassword.equals(user.getPassword())) {
+                    requestContext.setSecurityContext(new GeolocSecurityContext(user));
+                    log.info("User: {}", String.valueOf(user));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            requestContext.setSecurityContext(new GeolocSecurityContext(null));
         }
     }
 }
