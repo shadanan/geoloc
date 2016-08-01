@@ -1,0 +1,9 @@
+{
+  "name": "Geo Location WS",
+  "description": "Yahoo Champaign iOS class' Elide web service backend",
+  "repository": "https://github.com/shadanan/geoloc",
+  "logo": "http://elide.io/assets/images/elide.svg",
+  "keywords": ["elide", "java", "awesome"],
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
