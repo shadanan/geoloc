@@ -21,11 +21,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.Table;
 
 @Entity
 @Include(rootLevel = true)
 @UpdatePermission(expression = "io.elide.geoloc.checks.IsOwner OR Prefab.Common.UpdateOnCreate")
 @SharePermission(expression = "Prefab.Role.All")
+@Table(name = "app_user")
 public class User implements Principal {
 
     private long id;
