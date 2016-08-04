@@ -2,6 +2,8 @@
 
 This repo contains the source code for running the Yahoo Champaign iOS class' Elide web service backend.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Using the API
 
 ***NOTE: Do not use real passwords with this service. It is not secure, and is only to be used for teaching purposes.***
