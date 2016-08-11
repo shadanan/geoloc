@@ -74,7 +74,7 @@ public class User implements Principal {
         this.password = password;
     }
 
-    @OneToMany
+    @ManyToMany
     public Collection<User> getFriends() {
         return friends;
     }
